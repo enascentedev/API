@@ -1,10 +1,11 @@
 const express = require("express");
-const { getLivros } = require("../contraladores/livro");
+const { getLivros, getLivro, postLivro } = require("../contraladores/livro");
 const router = express.Router();
 
 router.get("/", getLivros);
+router.get("/:id", getLivro);
 
-router.post("/", (req, res) => {});
+router.post("/", postLivro);
 
 router.patch("/", (req, res) => {
 	res.send("Rota de atualização de livros PATCH");
