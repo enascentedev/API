@@ -1,0 +1,28 @@
+Arquitetura de APIs:
+Uma API (Interface de Programação de Aplicativos) é um conjunto de padrões e protocolos que permite que diferentes softwares se comuniquem e interajam entre si de maneira eficiente e organizada. Ela define como os diferentes componentes de um sistema podem se conectar e trocar informações.
+
+Uma arquitetura de API bem projetada é crucial para garantir a escalabilidade, a manutenção e a extensibilidade de um sistema. Ela define como os diferentes elementos da API se encaixam para fornecer funcionalidades específicas.
+
+Controles:
+Os controles em uma arquitetura de API são os pontos de entrada através dos quais as solicitações externas são recebidas e processadas. Os controles são responsáveis por receber os pedidos dos clientes (geralmente em forma de requisições HTTP) e encaminhá-los para as partes adequadas do sistema para processamento.
+
+Os controles também podem realizar tarefas como validação de entrada, autenticação, autorização e transformação de dados. Eles atuam como intermediários entre as requisições externas e os serviços internos.
+
+Rotas:
+As rotas são responsáveis por mapear URLs específicas para os controles correspondentes. Em uma arquitetura de API baseada em HTTP, as rotas determinam qual controle será acionado quando uma solicitação for feita para um determinado URL. Aqui ficam os end point da aplicação
+
+As rotas permitem que você defina a estrutura da sua API, determinando como os recursos e as funcionalidades estão organizados nos URLs. Isso ajuda os desenvolvedores a entenderem como interagir com a API e a localizar rapidamente as funcionalidades de que precisam.
+
+Serviços:
+Os serviços representam as unidades funcionais ou os componentes principais da sua API. Cada serviço é responsável por uma funcionalidade específica do sistema e pode incluir a lógica de negócios, acesso a dados e outros processamentos relacionados.
+
+A abordagem de serviços ajuda a modularizar a API, tornando-a mais fácil de gerenciar e manter. Cada serviço pode ser projetado, testado e mantido de forma independente, o que facilita a escalabilidade e a evolução do sistema.
+
+Resumo:
+Controles: Pontos de entrada que recebem e processam solicitações externas, realizando tarefas como validação e autenticação.
+
+Rotas: Mapeiam URLs para controles correspondentes, definindo a estrutura e a organização da API.
+
+Serviços: Unidades funcionais que executam lógica de negócios específica, permitindo modularização e manutenção simplificada.
+
+A maneira como você estrutura e organiza controles, rotas e serviços em sua arquitetura de API dependerá das necessidades do seu projeto, das melhores práticas e das tecnologias que você está usando.

@@ -30,7 +30,7 @@ function postLivro(req, res) {
 		const livroNovo = req.body;
 		insereLivro(livroNovo);
 		res.status(201);
-		res.send("livro inserido com sucesso");
+		res.send("livro novo inserido com sucesso");
 	} catch (error) {
 		res.status(500);
 		res.send(error.message);
