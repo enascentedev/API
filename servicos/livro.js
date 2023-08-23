@@ -1,29 +1,45 @@
-const fs = require("fs");
-function getTodosLivros() {
-	return JSON.parse(fs.readFileSync("livros.json"));
+const fs = require("fs/promises");
+
+async function getTodosLivros() {
+	const data = await fs.readFile("livros.json", "utf-8");
+	return JSON.parse(data);
 }
-function getLivroPorId(id) {
-	const livros = JSON.parse(fs.readFileSync("livros.json"));
-	const livroFiltrado = livros.filter((livro) => livro.id === id)[0];
+
+async function getLivroPorId(id) {
+	const data = await fs.readFile("livros.json", "utf-8");
+	const livros = JSON.parse(data);
+	const livroFiltrado = livros.find((livro) => livro.id === id);
 	return livroFiltrado;
 }
-function insereLivro(livroNovo) {
-	const livros = JSON.parse(fs.readFileSync("livros.json"));
+
+async function insereLivro(livroNovo) {
+	const data = await fs.readFile("livros.json", "utf-8");
+	const livros = JSON.parse(data);
 	const novaListaDeLivros = [...livros, livroNovo];
-	fs.writeFileSync("livros.json", JSON.stringify(novaListaDeLivros));
+	await fs.writeFile("livros.json", JSON.stringify(novaListaDeLivros));
 }
-function modificaLivro(modificacoes, id) {
-	let livrosAtuais = JSON.parse(fs.readFileSync("livros.json"));
+
+async function modificaLivro(modificacoes, id) {
+	const data = await fs.readFile("livros.json", "utf-8");
+	const livrosAtuais = JSON.parse(data);
 	const indiceModificado = livrosAtuais.findIndex((livro) => livro.id === id);
-	const conteudoMudado = { ...livrosAtuais[indiceModificado], ...modificacoes };
-	livrosAtuais[indiceModificado] = conteudoMudado;
-	fs.writeFileSync("livros.json", JSON.stringify(livrosAtuais));
+	if (indiceModificado !== -1) {
+		const conteudoMudado = {
+			...livrosAtuais[indiceModificado],
+			...modificacoes,
+		};
+		livrosAtuais[indiceModificado] = conteudoMudado;
+		await fs.writeFile("livros.json", JSON.stringify(livrosAtuais));
+	}
 }
-function deletaLivroPorId(id) {
-	const livros = JSON.parse(fs.readFileSync("livros.json"));
+
+async function deletaLivroPorId(id) {
+	const data = await fs.readFile("livros.json", "utf-8");
+	const livros = JSON.parse(data);
 	const livroFiltrados = livros.filter((livro) => livro.id !== id);
-	fs.writeFileSync("livros.json", JSON.stringify(livroFiltrados));
+	await fs.writeFile("livros.json", JSON.stringify(livroFiltrados));
 }
+
 module.exports = {
 	getTodosLivros,
 	getLivroPorId,

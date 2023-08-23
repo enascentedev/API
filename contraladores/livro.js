@@ -5,19 +5,19 @@ const {
 	modificaLivro,
 	deletaLivroPorId,
 } = require("../servicos/livro");
-function getLivros(req, res) {
+async function getLivros(req, res) {
 	try {
-		const livros = getTodosLivros();
+		const livros = await getTodosLivros();
 		res.send(livros);
 	} catch (error) {
 		res.status(500);
 		res.send(error.message);
 	}
 }
-function getLivro(req, res) {
+async function getLivro(req, res) {
 	try {
 		const id = req.params.id;
-		const livro = getLivroPorId(id);
+		const livro = await getLivroPorId(id);
 		res.send(livro);
 	} catch (error) {
 		res.status(500);
@@ -25,10 +25,10 @@ function getLivro(req, res) {
 	}
 }
 
-function postLivro(req, res) {
+async function postLivro(req, res) {
 	try {
 		const livroNovo = req.body;
-		insereLivro(livroNovo);
+		await insereLivro(livroNovo);
 		res.status(201);
 		res.send("livro novo inserido com sucesso");
 	} catch (error) {
@@ -36,22 +36,22 @@ function postLivro(req, res) {
 		res.send(error.message);
 	}
 }
-function patchLivro(req, res) {
+async function patchLivro(req, res) {
 	try {
 		const id = req.params.id;
 		const body = req.body;
 
-		modificaLivro(body, id);
+		await modificaLivro(body, id);
 		res.send("item modificado com sucesso");
 	} catch (error) {
 		res.status(500);
 		res.send(error.message);
 	}
 }
-function deleteLivro(req, res) {
+async function deleteLivro(req, res) {
 	try {
 		const id = req.params.id;
-		deletaLivroPorId(id);
+		await deletaLivroPorId(id);
 		res.send("item deletado com sucesso");
 	} catch (error) {
 		res.status(500);
