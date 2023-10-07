@@ -1,7 +1,10 @@
-// models/User.js
-
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
+
+const secret = crypto.randomBytes(64).toString("hex");
+
+console.log(secret);
 
 const UserSchema = new mongoose.Schema({
 	username: String,

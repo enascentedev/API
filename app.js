@@ -4,9 +4,14 @@ const rotaLivro = require("./rotas/livro");
 const rotaUsuario = require("./rotas/usuarios");
 const asyncErrors = require("express-async-errors");
 
+const token = jwt.sign({ _id: usuario._id }, process.env.JWT_SECRET);
+require("dotenv").config();
+
 // Conexão com MongoDB - Novo
 mongoose
-	.connect("mongodb://localhost:27017/livrosAPI", {
+	.connect(process.env.DB_URI, {
+		user: process.env.DB_USER,
+		pass: process.env.DB_PASSWORD,
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
