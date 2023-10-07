@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose"); // Novo
 const rotaLivro = require("./rotas/livro");
+const rotaUsuario = require("./rotas/usuarios");
 const asyncErrors = require("express-async-errors");
 
 // Conexão com MongoDB - Novo
@@ -16,6 +17,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/livros", rotaLivro);
+app.use("/usuarios", rotaUsuario);
 
 const errorMiddleware = require("./helpers/errorMiddleware");
 app.use(errorMiddleware);

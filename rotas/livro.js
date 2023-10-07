@@ -1,4 +1,5 @@
 const express = require("express");
+const authenticate = require("../helpers/authMiddleware"); // Importe o middleware
 const {
 	getLivros,
 	getLivro,
@@ -10,6 +11,7 @@ const router = express.Router();
 
 router.get("/", getLivros);
 router.get("/:id", getLivro);
+router.get("/", authenticate, getLivros); // Proteja a rota com o middleware
 
 router.post("/", postLivro);
 
